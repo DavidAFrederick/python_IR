@@ -11,3 +11,10 @@ while (True):
     send_ir("nec", "0xbf15")
     sleep(2)
 
+
+# Configuration information from RPI-Zero 131
+#
+# # Enable IR Receiver on GPIO 17
+# dtoverlay=gpio-ir,gpio_pin=17
+# # Enable IR Transmitter on GPIO 18
+# dtoverlay=gpio-ir-tx,gpio_pin=18

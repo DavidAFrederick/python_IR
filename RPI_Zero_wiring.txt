@@ -1,0 +1,64 @@
+Wiring Information for Sensor Header
+
+Receiver:
+Model:   VS1838B Infrared receiver
+Front view of sensor
+Left to Right
+Output  |  Ground  |  V+
+ GPIO-4      GND      3.3V
+  pin 7     pin 9     pin 1
+
+IR Transmitter:
+IR LED and resistor (82 Ohms) soldered together in series
+LED Anode on GPIO 14 (pin 8)
+Resistor on Ground (pin 6)
+
+Display LED
+LED and resistor (82 Ohms) soldered together in series
+LED Anode on GPIO 24 (pin 18)
+Resistor on Ground (pin 24)
+
+sudo nano /boot/firmware/config.txt
+
+# Enable IR Receiver on GPIO 18
+dtoverlay=gpio-ir,gpio_pin=4
+# Enable IR Transmitter on GPIO 14
+dtoverlay=gpio-ir-tx,gpio_pin=14
+
+
+Test the IR sensors:
+Receiver:
+
+Transmitter:
+
+$ ir-ctl --features
+Receive features /dev/lirc0:
+ - Device cannot receive
+Send features /dev/lirc0:
+ - Device can send raw IR
+ - IR scancode encoder
+ - Set carrier
+ - Set duty cycle
+
+
+sudo ir-keytable
+Found /sys/class/rc/rc2/ with:
+	Name: gpio_ir_recv
+	Driver: gpio_ir_recv
+	Default keymap: rc-rc6-mce
+	Input device: /dev/input/event2
+	LIRC device: /dev/lirc1
+	Attached BPF protocols: 
+	Supported kernel protocols: lirc rc-5 rc-5-sz jvc sony nec sanyo mce_kbd rc-6 sharp xmp imon 
+	Enabled kernel protocols: lirc rc-6 
+	bus: 25, vendor/product: 0001:0001, version: 0x0100
+	Repeat delay: 500 ms, repeat period: 125 ms
+Found /sys/class/rc/rc0/ with:
+	Name: vc4-hdmi
+	Driver: cec
+	Default keymap: rc-cec
+	Input device: /dev/input/event0
+	Supported kernel protocols: cec 
+	Enabled kernel protocols: cec 
+	bus: 30, vendor/product: 0000:0000, version: 0x0001
+	Repeat delay: 0 ms, repeat period: 125 ms
