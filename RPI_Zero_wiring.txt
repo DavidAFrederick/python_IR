@@ -15,8 +15,8 @@ Resistor on Ground (pin 6)
 
 Display LED
 LED and resistor (82 Ohms) soldered together in series
-LED Anode on GPIO 24 (pin 18)
-Resistor on Ground (pin 24)
+LED Anode on GPIO 18   [pin 12]
+Resistor on Ground     [pin 14]
 
 sudo nano /boot/firmware/config.txt
 
